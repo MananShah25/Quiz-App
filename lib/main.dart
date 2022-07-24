@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-//TODO: Step 2 - Import the rFlutter_Alert package here.
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'quiz_brain.dart';
 
@@ -38,9 +37,10 @@ class _QuizPageState extends State<QuizPage> {
     bool correctAnswer = quizBrain.getCorrectAnswer();
 
     setState(() {
-      //TODO: Step 4 - Use IF/ELSE to check if we've reached the end of the quiz. If true, execute Part A, B, C, D.
       if (quizBrain.isFinished()) {
-        //TODO: Step 4 Part A - show an alert using rFlutter_alert (remember to read the docs for the package!)
+        if (userPickedAnswer == correctAnswer) {
+          rightAns++;
+        }
         Alert(
           context: context,
           type: AlertType.error,
@@ -58,13 +58,10 @@ class _QuizPageState extends State<QuizPage> {
           ],
         ).show();
         //HINT! Step 4 Part B is in the quiz_brain.dart
-        //TODO: Step 4 Part C - reset the questionNumber,
         quizBrain.reset();
-        //TODO: Step 4 Part D - empty out the scoreKeeper.
         scoreKeeper = [];
         rightAns = 0;
       } else {
-        //TODO: Step 5 - If we've not reached the end, ELSE do the answer checking steps below 👇
         if (userPickedAnswer == correctAnswer) {
           scoreKeeper.add(Icon(
             Icons.check,
